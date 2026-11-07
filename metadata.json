@@ -1,0 +1,6 @@
+{
+  "name": "Olga Salon Glow",
+  "description": "Sistema de gestión diaria para Olga Salon Glow: registro de servicios, insumos y comisiones.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
