@@ -6,9 +6,10 @@ import { X, Printer } from 'lucide-react';
 interface Props {
   transaction: TransactionEntry | null;
   onClose: () => void;
+  isAdmin?: boolean;
 }
 
-export const ReceiptModal: React.FC<Props> = ({ transaction, onClose }) => {
+export const ReceiptModal: React.FC<Props> = ({ transaction, onClose, isAdmin = false }) => {
   if (!transaction) return null;
 
   const handlePrint = () => {
@@ -68,7 +69,7 @@ export const ReceiptModal: React.FC<Props> = ({ transaction, onClose }) => {
                   <span>{srv.serviceName}</span>
                   <span className="tabular-nums">{formatCurrency(srv.serviceAmount)}</span>
                 </div>
-                {srv.productCost > 0 && (
+                {isAdmin && srv.productCost > 0 && (
                   <div className="flex justify-between text-[11px] text-amber-700 pl-2">
                     <span>- Costo Insumo:</span>
                     <span className="tabular-nums">-{formatCurrency(srv.productCost)}</span>
@@ -83,10 +84,12 @@ export const ReceiptModal: React.FC<Props> = ({ transaction, onClose }) => {
               <span>TOTAL:</span>
               <span className="tabular-nums">{formatCurrency(transaction.totalTransactionAmount)}</span>
             </div>
-            <div className="flex justify-between text-emerald-700 font-semibold pt-1">
-              <span>Comisión Empleado:</span>
-              <span className="tabular-nums">{formatCurrency(transaction.totalCommissionEarned)}</span>
-            </div>
+            {isAdmin && (
+              <div className="flex justify-between text-emerald-700 font-semibold pt-1">
+                <span>Comisión Empleado:</span>
+                <span className="tabular-nums">{formatCurrency(transaction.totalCommissionEarned)}</span>
+              </div>
+            )}
           </div>
 
           <div className="text-center text-[11px] text-slate-400 pt-3 border-t border-dashed border-slate-200">

@@ -40,11 +40,11 @@ const SalonAppContent: React.FC<ContentProps> = ({ session, onLogout }) => {
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-14">
         {isCashierOnly ? (
           // Vista exclusiva de CAJA: solo registro diario de ventas
-          <DailySalesView />
+          <DailySalesView session={session} />
         ) : (
           // Vista de Administrador (OLGA): acceso a todos los módulos
           <>
-            {activeTab === 'ventas' && <DailySalesView />}
+            {activeTab === 'ventas' && <DailySalesView session={session} />}
             {activeTab === 'reportes' && <ReportsView />}
             {activeTab === 'empleados' && <EmployeeManagementView />}
             {activeTab === 'catalogos' && <CatalogManagementView />}
